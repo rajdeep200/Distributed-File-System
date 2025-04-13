@@ -2,9 +2,13 @@ import express from "express";
 import fileRoutes from "./routes/file.route";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
+import { connectProducer } from "./kafka/producer";
+import { runConsumer } from "./kafka/consumer";
 
 dotenv.config();
 connectDB();
+connectProducer();
+runConsumer();
 const app = express();
 
 app.use(express.json());
